@@ -1,0 +1,17 @@
+/* fonts definitions */
+
+@font-face {
+	font-family: 'Pretendard';
+	font-style: normal;
+	font-weight: 600;
+	src: url(../fonts/pretendard-semi-bold.otf);
+}
+
+
+@font-face {
+	font-family: 'Pretendard';
+	font-style: normal;
+	font-weight: 400;
+	src: url(../fonts/pretendard-jp-regular.otf);
+}
+
