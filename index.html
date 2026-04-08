@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/fonts.css" />
+	<link rel="stylesheet" href="css/global.css" />
+	<link rel="stylesheet" href="css/website.css" />
+
+
+  <style>
+    .tabs-text1, .tabs-text2 { cursor: pointer; transition: color 0.15s; }
+    .tabs-text2:hover { color: var(--primitive-brand-400); }
+    .header-text, .header-text-left { cursor: pointer; transition: color 0.15s; }
+    .header-text:hover, .header-text-left:hover { color: var(--primitive-brand-400); }
+    .header-input-search { cursor: text; position: relative; }
+    .search-real-input {
+      border: none; outline: none; background: transparent;
+      font-size: 12px; color: var(--primitive-neutral-800);
+      font-family: var(--font-family-pretendard); font-weight: 400;
+      flex-grow: 1; width: 100%;
+    }
+    .search-real-input::placeholder { color: var(--primitive-neutral-400); }
+    .search-dropdown {
+      position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+      background: #fff; border: 1px solid var(--primitive-neutral-200);
+      border-radius: 6px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      display: none; z-index: 200;
+    }
+    .search-dropdown.open { display: block; }
+    .search-dd-item {
+      padding: 10px 14px; font-size: 14px; cursor: pointer;
+      color: var(--primitive-neutral-700); font-family: var(--font-family-pretendard);
+    }
+    .search-dd-item:hover { background: var(--primitive-opacity-brand-12); color: var(--primitive-brand-400); }
+    .search-dd-empty { padding: 10px 14px; font-size: 14px; color: var(--primitive-neutral-400); }
+    .select-menu-item-a, .select-menu-item-b { cursor: pointer; }
+    .sidebar-menu-item { cursor: pointer; border-radius: 4px; transition: background 0.15s, color 0.15s; }
+    .sidebar-menu-item:hover { background: var(--primitive-opacity-brand-12); color: var(--primitive-brand-400); }
+    .sidebar-active { color: var(--primitive-brand-400) !important; background-color: var(--primitive-opacity-brand-12) !important; border-radius: 4px; }
+    .sidebar-item-a, .sidebar-item-b { cursor: pointer; }
+    #ds-toast {
+      position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+      background: var(--primitive-neutral-800); color: #fff;
+      font-size: 14px; font-family: var(--font-family-pretendard);
+      padding: 10px 22px; border-radius: 8px;
+      opacity: 0; pointer-events: none; transition: opacity 0.25s;
+      z-index: 9999; white-space: nowrap;
+    }
+    #ds-toast.show { opacity: 1; }
+  </style>
+
+</head>
+
+<body>
+	<header class="header">
+		<div class="header-section">
+			<img src="assets/header-logo.png" class="header-logo" />
+			<p class="header-text-solum-design">SOLUM Design System</p>
+			<button class="header-btn-badge hover-bright">V 1.1</button>
+		</div>
+		
+		<div class="header-menu">
+			<p class="header-text-left">Introduction</p>
+			<p class="header-text">Foundations</p>
+			<p class="header-text header-text-components">Components</p>
+			<p class="header-text">Guidelines</p>
+		</div>
+		
+		<div class="header-input-search">
+			<object data="assets/header-ic-search.svg" class="icon-ic-responsive header-ic-search" type="image/svg+xml"></object>
+			<p class="header-text2">Search</p>
+		</div>
+	</header>
+	
+	<div class="contents">
+		<div class="contents-sidebar">
+			<div class="contents-sidebar-navi">
+				<div class="contents-section1">
+					<p class="contents-text-sidebar1 text1">Components</p>
+					<p class="contents-text-sidebar2">Badge</p>
+					
+					<div class="sidebar-item-a sidebar-item1">
+						<p class="sidebar-item-text1">Button</p>
+						<object data="assets/sidebar-item/sidebar-item-ic-responsive1.svg" class="ic-responsive sidebar-item-ic-responsive1" type="image/svg+xml"></object>
+					</div>
+					
+					<div class="contents-sidebar-item text1">Button</div>
+					<p class="contents-text-sidebar3">Icon button</p>
+					<p class="contents-text-sidebar4">Split button</p>
+					<p class="contents-text-sidebar5">Toggle button</p>
+					<p class="contents-text-sidebar6">Card</p>
+					<p class="contents-text-sidebar7">Chip</p>
+					<p class="contents-text-sidebar8">Control</p>
+					
+					<div class="sidebar-item-b sidebar-item2">
+						<p class="sidebar-item-text2">Data display</p>
+						<object data="assets/sidebar-item/sidebar-item-ic-responsive2.svg" class="ic-responsive sidebar-item-ic-responsive2" type="image/svg+xml"></object>
+					</div>
+					
+					<p class="contents-text-sidebar9">Data table</p>
+					<p class="contents-text-sidebar10">Divider</p>
+					<p class="contents-text-sidebar11">Feedback</p>
+					<p class="contents-text-sidebar12">Input</p>
+					<p class="contents-text-sidebar13">List</p>
+					<p class="contents-text-sidebar14">Map</p>
+					<p class="contents-text-sidebar15">Modal</p>
+					<p class="contents-text-sidebar16">Navigation</p>
+					<p class="contents-text-sidebar17">Picker</p>
+					<p class="contents-text-sidebar18">Pop over</p>
+					<p class="contents-text-sidebar19">Pop up</p>
+					<p class="contents-text-sidebar20">Profile</p>
+					<p class="contents-text-sidebar21">Tooltip</p>
+					<p class="contents-text-sidebar22">Upload</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="contents-contents">
+			<div class="contents-title">
+				<div class="contents-section2">
+					<p class="contents-text-components text2">Components</p>
+					<h1 class="contents-title-btn">Button</h1>
+				</div>
+				
+				<p class="contents-text-a-btn-triggers">A button triggers an event or action when clicked</p>
+			</div>
+			
+			<div class="tabs">
+				<p class="tabs-text1 text1">Guideline</p>
+				<p class="tabs-text2">Example</p>
+			</div>
+			
+			<div class="contents-section3">
+				<p class="contents-text-a">Anatomy</p>
+				
+				<div class="contents-section4">
+					<div class="contents-artwork1">
+						<button class="btn-a btn6 hover-bright">
+							<object data="assets/btn/btn-icon-ic.svg" class="btn-icon-ic-responsive-a btn-icon-ic1" type="image/svg+xml"></object>
+							<p class="btn-label1">label</p>
+							<object data="assets/btn/btn-icon-ic.svg" class="btn-icon-ic-responsive-a btn-icon-ic2" type="image/svg+xml"></object>
+						</button>
+						
+						<div class="contents-group">
+							<div class="contents-row1">
+								<div class="anatomy-label anatomy-label1">
+									<button class="btn-numbering anatomy-label-btn-numbering hover-bright">1</button>
+									<div class="line anatomy-label-line"></div>
+								</div>
+								
+								<div class="contents-anatomy-label1">
+									<button class="btn-numbering contents-btn-numbering1 hover-bright">2</button>
+									<div class="line contents-line1"></div>
+								</div>
+								
+								<div class="anatomy-label anatomy-label2">
+									<button class="btn-numbering anatomy-label-btn-numbering hover-bright">3</button>
+									<div class="line anatomy-label-line"></div>
+								</div>
+							</div>
+							
+							<div class="contents-anatomy-label2">
+								<div class="line contents-line2"></div>
+								<button class="btn-numbering contents-btn-numbering2 hover-bright">4</button>
+							</div>
+						</div>
+					</div>
+					
+					<div class="contents-section5">
+						<div class="anatomy-item">
+							<button class="anatomy-item-btn-numbering hover-bright">1</button>
+							
+							<div class="anatomy-item-name">
+								<object data="assets/anatomy-item-name/anatomy-item-type-icon.svg" class="anatomy-item-type-icon" type="image/svg+xml"></object>
+								<p class="anatomy-item-text">Left Icon</p>
+							</div>
+						</div>
+						
+						<div class="anatomy-item">
+							<button class="anatomy-item-btn-numbering hover-bright">2</button>
+							
+							<div class="anatomy-item-name">
+								<object data="assets/anatomy-item-name/anatomy-item-type-icon2.svg" class="anatomy-item-type-icon" type="image/svg+xml"></object>
+								<p class="anatomy-item-text">Label</p>
+							</div>
+						</div>
+						
+						<div class="anatomy-item">
+							<button class="anatomy-item-btn-numbering hover-bright">3</button>
+							
+							<div class="anatomy-item-name">
+								<object data="assets/anatomy-item-name/anatomy-item-type-icon.svg" class="anatomy-item-type-icon" type="image/svg+xml"></object>
+								<p class="anatomy-item-text">Right Icon</p>
+							</div>
+						</div>
+						
+						<div class="anatomy-item">
+							<button class="anatomy-item-btn-numbering hover-bright">4</button>
+							
+							<div class="anatomy-item-name">
+								<object data="assets/anatomy-item-name/anatomy-item-type-icon4.svg" class="anatomy-item-type-icon" type="image/svg+xml"></object>
+								<p class="anatomy-item-text">Container</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="contents-section6">
+				<p class="contents-text-a contents-text-variants">Variants</p>
+				
+				<div class="card3">
+					<div class="card-section1">
+						<button class="card-btn hover-bright">Button</button>
+					</div>
+					
+					<div class="card-section2">
+						<div class="card-section3">
+							<p class="card-text">Type</p>
+							
+							<div class="card-section4">
+								<div class="select-menu-item-a select-menu-item1">
+									<div class="interaction select-menu-item-interaction1"></div>
+									
+									<div class="select-menu-item-circle-radio">
+										<div class="select-menu-item-circle-symbol"></div>
+									</div>
+									
+									<p class="select-menu-item-text1">Solid</p>
+								</div>
+								
+								<div class="select-menu-item-b select-menu-item2">
+									<div class="interaction select-menu-item-interaction2"></div>
+									<div class="select-menu-item-circle"></div>
+									<p class="select-menu-item-text2">Outline</p>
+								</div>
+								
+								<div class="select-menu-item-b select-menu-item3">
+									<div class="interaction select-menu-item-interaction2"></div>
+									<div class="select-menu-item-circle"></div>
+									<p class="select-menu-item-text2">Text</p>
+								</div>
+								
+								<div class="select-menu-item-b select-menu-item4">
+									<div class="interaction select-menu-item-interaction2"></div>
+									<div class="select-menu-item-circle"></div>
+									<p class="select-menu-item-text2">Danger</p>
+								</div>
+							</div>
+						</div>
+						
+						<div class="card-section5">
+							<p class="card-text">Icon</p>
+							
+							<div class="card-section6">
+								<div class="select-menu-item-a select-menu-item5">
+									<div class="interaction select-menu-item-interaction1"></div>
+									
+									<div class="select-menu-item-circle-radio">
+										<div class="select-menu-item-circle-symbol"></div>
+									</div>
+									
+									<p class="select-menu-item-text1">Label only</p>
+								</div>
+								
+								<div class="select-menu-item-b select-menu-item6">
+									<div class="interaction select-menu-item-interaction2"></div>
+									<div class="select-menu-item-circle"></div>
+									<p class="select-menu-item-text2">Icon only</p>
+								</div>
+								
+								<div class="select-menu-item-b select-menu-item7">
+									<div class="interaction select-menu-item-interaction2"></div>
+									<div class="select-menu-item-circle"></div>
+									<p class="select-menu-item-text2">Left Icon with label</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="contents-section7">
+				<p class="contents-text-b">Size</p>
+				
+				<div class="contents-artwork2">
+					<button class="btn-b contents-btn1 hover-bright">Small</button>
+					<button class="contents-btn2 text2 hover-bright btn1">Medium</button>
+					<button class="contents-btn3 text1 btn1 hover-bright">Large</button>
+				</div>
+			</div>
+			
+			<div class="contents-section8">
+				<p class="contents-text-b">State</p>
+				
+				<div class="card-artwork1 card1">
+					<div class="section-a section3">
+						<p class="text-a">Enabled</p>
+						
+						<button class="btn-c btn2 hover-bright">
+							<object data="assets/btn/btn-icon.svg" class="icon-ic-responsive btn-icon1" type="image/svg+xml"></object>
+							<p class="btn-label2">label</p>
+						</button>
+						
+						<button class="btn-c btn3 hover-bright">
+							<object data="assets/btn/btn-icon2.svg" class="icon-ic-responsive btn-icon1" type="image/svg+xml"></object>
+							<p class="btn-label2">label</p>
+						</button>
+						
+						<button class="btn-c btn4 hover-bright">
+							<object data="assets/btn/btn-icon.svg" class="icon-ic-responsive btn-icon1" type="image/svg+xml"></object>
+							<p class="btn-label2">label</p>
+						</button>
+					</div>
+					
+					<div class="section-a section4">
+						<p class="text-a">Hover</p>
+						
+						<button class="btn-c btn2 hover-bright">
+							<object data="assets/btn/btn-icon.svg" class="icon-ic-responsive btn-icon1" type="image/svg+xml"></object>
+							<p class="btn-label2">label</p>
+						</button>
+						
+						<button class="btn-c btn3 hover-bright">
+							<object data="assets/btn/btn-icon2.svg" class="icon-ic-responsive btn-icon1" type="image/svg+xml"></object>
+							<p class="btn-label2">label</p>
+						</button>
+						
+						<button class="btn-c btn4 hover-bright">
+							<object data="assets/btn/btn-icon.svg" class="icon-ic-responsive btn-icon1" type="image/svg+xml"></object>
+							<p class="btn-label2">label</p>
+						</button>
+					</div>
+					
+					<div class="card-artwork-section">
+						<p class="text-a">Focused</p>
+						
+						<button class="btn-d btn7 hover-bright">
+							<object data="assets/btn/btn-icon.svg" class="btn-icon-ic-responsive-b btn-icon2" type="image/svg+xml"></object>
+							<p class="btn-label3">label</p>
+						</button>
+						
+						<button class="btn-d btn8 hover-bright">
+							<object data="assets/btn/btn-icon2.svg" class="btn-icon-ic-responsive-b btn-icon2" type="image/svg+xml"></object>
+							<p class="btn-label3">label</p>
+						</button>
+						
+						<button class="btn-d btn9 hover-bright">
+							<object data="assets/btn/btn-icon.svg" class="btn-icon-ic-responsive-b btn-icon2" type="image/svg+xml"></object>
+							<p class="btn-label3">label</p>
+						</button>
+					</div>
+					
+					<div class="section-a section5">
+						<p class="text-a">Pressed</p>
+						
+						<button class="btn-c btn2 hover-bright">
+							<object data="assets/btn/btn-icon.svg" class="icon-ic-responsive btn-icon1" type="image/svg+xml"></object>
+							<p class="btn-label2">label</p>
+						</button>
+						
+						<button class="btn-c btn3 hover-bright">
+							<object data="assets/btn/btn-icon2.svg" class="icon-ic-responsive btn-icon1" type="image/svg+xml"></object>
+							<p class="btn-label2">label</p>
+						</button>
+						
+						<button class="btn-c btn4 hover-bright">
+							<object data="assets/btn/btn-icon.svg" class="icon-ic-responsive btn-icon1" type="image/svg+xml"></object>
+							<p class="btn-label2">label</p>
+						</button>
+					</div>
+					
+					<div class="section-a section6">
+						<p class="text-a">Disabled</p>
+						
+						<button class="btn-c btn2 hover-bright">
+							<object data="assets/btn/btn-icon.svg" class="icon-ic-responsive btn-icon1" type="image/svg+xml"></object>
+							<p class="btn-label2">label</p>
+						</button>
+						
+						<button class="btn-c btn3 hover-bright">
+							<object data="assets/btn/btn-icon14.svg" class="icon-ic-responsive btn-icon1" type="image/svg+xml"></object>
+							<p class="btn-label2">label</p>
+						</button>
+						
+						<button class="btn-c btn4 hover-bright">
+							<object data="assets/btn/btn-icon.svg" class="icon-ic-responsive btn-icon1" type="image/svg+xml"></object>
+							<p class="btn-label2">label</p>
+						</button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="contents-section9">
+				<p class="contents-text-a">Action Priority</p>
+				
+				<div class="card-artwork2 card1">
+					<div class="section-b section7">
+						<button class="btn-b section-btn hover-bright">Primary</button>
+						<p class="section-text1">화면에서 가장 중요한 핵심 액션에 사용합니다. 화면당 하나의 버튼 사용을 권장합니다.</p>
+					</div>
+					
+					<div class="section-b section8">
+						<button class="btn-b section-btn hover-bright">Secondary</button>
+						<p class="section-text1">Primary 액션을 보완하거나 대체할 때, 중요도가 유사한 대안 액션에 사용합니다.</p>
+					</div>
+					
+					<div class="section-b section9">
+						<button class="btn-b section-btn hover-bright">Tertiary</button>
+						<p class="section-text1">추가 옵션 등 보조적인 기능에 사용하며, 화면 내 시각적 우선순위를 최소화합니다.</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="contents-col1">
+				<p class="contents-text-c">Placement</p>
+				<p class="contents-text-d">Primary Action은 중요한 행동 1개만 강조합니다.</p>
+				
+				<div class="contents-row2">
+					<div class="section-c section10">
+						<div class="example-header-a example-header1">
+							<object data="assets/example-header/example-header-ic-check.svg" class="ic-dont example-header-ic-check1" type="image/svg+xml"></object>
+							<p class="example-header-text1">Do</p>
+						</div>
+						
+						<img src="assets/section/section-img1.png" class="img section-img1" />
+						<p class="text-symbol">
+							가장 중요한 작업에 더 눈에 띄는 버튼을 선택하세요. 예를 들어 텍스트 버튼 옆에 채워진 버튼을 배치할 수 있습니다.
+						</p>
+					</div>
+					
+					<div class="section-c section11">
+						<div class="example-header-a example-header1">
+							<object data="assets/example-header/example-header-ic-check.svg" class="ic-dont example-header-ic-check1" type="image/svg+xml"></object>
+							<p class="example-header-text1">Do</p>
+						</div>
+						
+						<img src="assets/section/section-img2.png" class="img section-img1" />
+						<p class="text-symbol">강조 표시가 강한 동작 옆에 강조도가 낮은 동작을 옆에 배치하세요.</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="contents-col2">
+				<p class="contents-text-e">페이지 레벨 CTA 배치</p>
+				
+				<div class="section-d section12">
+					<div class="example-header-b example-header2">
+						<object data="assets/example-header/example-header-ic-check.svg" class="ic-dont example-header-ic-check2" type="image/svg+xml"></object>
+						<p class="example-header-text2">Do</p>
+					</div>
+					
+					<img src="assets/section/section-img3.png" class="input" />
+					<p class="section-text-bottom2">
+						페이지 전체에 영향을 끼치는 CTA는 핵심 액션 ‘Primary’ 버튼 컬러를 사용하며 페이지 헤더의 우측 영역에 배치됩니다.<br />
+						그 외 보조 액션은 ‘Secondary’ 버튼 컬러를 사용하여 시각적으로 구분합니다.
+					</p>
+				</div>
+				
+				<div class="section-d section13">
+					<div class="example-header-b example-header2">
+						<object data="assets/example-header/example-header-ic-dont.svg" class="ic-dont example-header-ic-check2" type="image/svg+xml"></object>
+						<p class="example-header-text2">Don’t </p>
+					</div>
+					
+					<img src="assets/section/section-img4.png" class="input" />
+					<p class="section-text-bottom2">
+						주요 액션이 2개 이상이면 사용자가 혼란을 느낄 수 있으므로, <br />
+						‘Primary’ 버튼을 여러개 사용하지 않습니다.
+					</p>
+				</div>
+			</div>
+			
+			<div class="contents-section10">
+				<p class="contents-text-c">UX Guidelines</p>
+				<p class="contents-text-d">버튼 아이콘 사용 가이드</p>
+				
+				<div class="contents-section11">
+					<div class="contents-section12">
+						<div class="example-header-a example-header5">
+							<object data="assets/example-header/example-header-ic-check.svg" class="ic-dont example-header-ic-check1" type="image/svg+xml"></object>
+							<p class="example-header-text1">Do</p>
+						</div>
+						
+						<img src="assets/contents-img1.png" class="img contents-img1" />
+						<p class="text-symbol">Chevron 아이콘은 우측에, 그 외 아이콘은 좌측에 사용합니다.</p>
+					</div>
+					
+					<div class="contents-section13">
+						<div class="example-header-a example-header6">
+							<object data="assets/example-header/example-header-ic-dont.svg" class="ic-dont example-header-ic-check1" type="image/svg+xml"></object>
+							<p class="example-header-text1">Don’t </p>
+						</div>
+						
+						<div class="contents-col3">
+							<img src="assets/contents-img2.png" class="contents-img2 input" />
+							<p>아이콘 좌측 외 사용은 지양합니다.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="contents-section14">
+				<p class="contents-text-e">레이블 텍스트</p>
+				
+				<div class="section-e section14">
+					<div class="section-f section1">
+						<div class="example-header-b example-header3">
+							<object data="assets/example-header/example-header-ic-check.svg" class="ic-dont example-header-ic-check2" type="image/svg+xml"></object>
+							<p class="example-header-text2">Do</p>
+						</div>
+						
+						<img src="assets/section/section-img5.png" class="img" />
+						<p class="text-symbol">
+							필요한 만큼 텍스트를 줄이며 추가적인 맥락을 제공할 경우에 <br />
+							아이콘을 포함합니다.
+						</p>
+					</div>
+					
+					<div class="section-f section2">
+						<div class="example-header-b example-header3">
+							<object data="assets/example-header/example-header-ic-dont.svg" class="ic-dont example-header-ic-check2" type="image/svg+xml"></object>
+							<p class="example-header-text2">Don’t </p>
+						</div>
+						
+						<img src="assets/section/section-img6.png" class="img" />
+						<p class="text-symbol">텍스트 줄 바꿈이나 잘림을 피하십시오.</p>
+					</div>
+				</div>
+				
+				<div class="contents-section15">
+					<div class="section-g section15">
+						<div class="example-header-b example-header4">
+							<object data="assets/example-header/example-header-ic-check.svg" class="ic-dont example-header-ic-check2" type="image/svg+xml"></object>
+							<p class="example-header-text2">Do</p>
+						</div>
+						
+						<div class="card2">
+							<div class="table-cell table-cell1">
+								<button class="btn-e btn5 hover-bright">
+									<object data="assets/btn/btn-icon4.svg" class="btn-icon-ic-responsive-c btn-icon3" type="image/svg+xml"></object>
+									<p class="btn-label4">Run</p>
+								</button>
+							</div>
+							
+							<div class="table-cell table-cell2">
+								<button class="btn-e btn5 hover-bright">
+									<object data="assets/btn/btn-icon4.svg" class="btn-icon-ic-responsive-c btn-icon3" type="image/svg+xml"></object>
+									<p class="btn-label4">Retry</p>
+								</button>
+							</div>
+						</div>
+						
+						<p class="section-text-bottom4">Table에서 버튼 사용시, 버튼 크기를 동일하게 사용합니다.</p>
+					</div>
+					
+					<div class="section-g section16">
+						<div class="example-header-b example-header4">
+							<object data="assets/example-header/example-header-ic-dont.svg" class="ic-dont example-header-ic-check2" type="image/svg+xml"></object>
+							<p class="example-header-text2">Don’t</p>
+						</div>
+						
+						<div class="card2">
+							<div class="table-cell table-cell1">
+								<button class="btn-e btn5 hover-bright">
+									<object data="assets/btn/btn-icon4.svg" class="btn-icon-ic-responsive-c btn-icon3" type="image/svg+xml"></object>
+									<p class="btn-label4">Run</p>
+								</button>
+							</div>
+							
+							<div class="table-cell table-cell2">
+								<button class="btn-e btn5 hover-bright">
+									<object data="assets/btn/btn-icon4.svg" class="btn-icon-ic-responsive-c btn-icon3" type="image/svg+xml"></object>
+									<p class="btn-label4">Reset back to beginning</p>
+								</button>
+							</div>
+						</div>
+						
+						<p class="section-text-bottom4">라벨의 길이가 급격하게 길어지거나 짧아지지 않도록 합니다.</p>
+					</div>
+				</div>
+				
+				<div class="section-e section17">
+					<div class="section-f section1">
+						<div class="example-header-b example-header3">
+							<object data="assets/example-header/example-header-ic-check.svg" class="ic-dont example-header-ic-check2" type="image/svg+xml"></object>
+							<p class="example-header-text2">Do</p>
+						</div>
+						
+						<img src="assets/section/section-img7.png" class="img" />
+						<p class="text-symbol">
+							버튼에 사용하는 문구와 제목 및 기타 관련 텍스트에 사용하는 문구가 <br />
+							동일해야 합니다.
+						</p>
+					</div>
+					
+					<div class="section-f section2">
+						<div class="example-header-b example-header3">
+							<object data="assets/example-header/example-header-ic-dont.svg" class="ic-dont example-header-ic-check2" type="image/svg+xml"></object>
+							<p class="example-header-text2">Don’t</p>
+						</div>
+						
+						<img src="assets/section/section-img8.png" class="img" />
+						<p class="text-symbol">같은 의미의 액션에 다른 레이블을 사용하지 않습니다.</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="contents-section16">
+				<p class="contents-text-right-to-left">Right-to-left languages</p>
+				
+				<div class="contents-section17">
+					<div class="section-h section18">
+						<img src="assets/section/section-section1.png" class="input" />
+						<p>텍스트를 줄이고, 필요 시 아이콘으로 보완합니다.</p>
+					</div>
+					
+					<div class="section-h section19">
+						<img src="assets/section/section-section2.png" class="input" />
+						<p>RTL언어에서 아이콘은 UI 레이아웃을 좌우반전하여 제공합니다.</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="contents-col4">
+				<p class="contents-text-f">아이콘(선택)</p>
+				
+				<div class="contents-usage">
+					<div class="contents-section18">
+						<div class="example-header-b example-header7">
+							<object data="assets/example-header/example-header-ic-check.svg" class="ic-dont example-header-ic-check2" type="image/svg+xml"></object>
+							<p class="example-header-text2">Do</p>
+						</div>
+						
+						<img src="assets/contents-img3.png" class="contents-img contents-img3" />
+						<p class="contents-text-symbol">아이콘은 선택적으로 텍스트 보조하는 용도로만 사용합니다.</p>
+					</div>
+					
+					<div class="contents-section19">
+						<div class="example-header-b example-header8">
+							<object data="assets/example-header/example-header-ic-dont.svg" class="ic-dont example-header-ic-check2" type="image/svg+xml"></object>
+							<p class="example-header-text2">Don’t </p>
+						</div>
+						
+						<img src="assets/contents-img4.png" class="contents-img" />
+						<p class="contents-text-symbol">버튼 중앙에 아이콘과 텍스트를 세로로 정렬하지 않습니다.</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="contents-col-bottom">
+				<p class="contents-text-f">Danger Action 버튼 사용 가이드</p>
+				
+				<div class="contents-row3">
+					<div class="contents-section20">
+						<div class="example-header-b example-header9">
+							<object data="assets/example-header/example-header-ic-check.svg" class="ic-dont example-header-ic-check2" type="image/svg+xml"></object>
+							<p class="example-header-text2">Do</p>
+						</div>
+						
+						<img src="assets/contents-img5.png" class="input" />
+						<span class="contents-symbol sub-text-primitive-neutral-500">롤백 불가, 로그 삭제, DB 초기화, 히스토리 초기화 등 해당 액션으로 
+시스템/데이터에 중대한 손실일 경우에 Danger 버튼을 사용합니다.</span>
+					</div>
+					
+					<div class="contents-section21">
+						<div class="example-header-b example-header10">
+							<object data="assets/example-header/example-header-ic-dont.svg" class="ic-dont example-header-ic-check2" type="image/svg+xml"></object>
+							<p class="example-header-text2">Don’t</p>
+						</div>
+						
+						<img src="assets/contents-img6.png" class="img contents-img6" />
+						<p class="text-symbol">
+							Retry, Cancel, Stop 등 복구 가능한 행동이나 영향도가 낮은 액션인 경우 사용하지 않습니다. (‘Primary’ 버튼 컬러를 사용합니다.)
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+  <script>
+    const MENU_ITEMS = ['Badge','Button','Icon button','Split button','Toggle button','Card','Chip','Control','Data table','Divider','Feedback','Input','List','Map','Modal','Navigation','Picker','Pop over','Pop up','Profile','Tooltip','Upload'];
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // 검색창 input 교체
+      const searchWrap = document.querySelector('.header-input-search');
+      if (searchWrap) {
+        const pEl = searchWrap.querySelector('.header-text2');
+        if (pEl) pEl.remove();
+        const inp = document.createElement('input');
+        inp.className = 'search-real-input';
+        inp.placeholder = 'Search';
+        searchWrap.appendChild(inp);
+        const dd = document.createElement('div');
+        dd.className = 'search-dropdown';
+        searchWrap.appendChild(dd);
+        inp.addEventListener('input', function() {
+          const q = this.value.trim().toLowerCase();
+          dd.innerHTML = '';
+          if (!q) { dd.classList.remove('open'); return; }
+          const filtered = MENU_ITEMS.filter(m => m.toLowerCase().includes(q));
+          if (!filtered.length) {
+            dd.innerHTML = '<div class="search-dd-empty">검색 결과 없음</div>';
+          } else {
+            filtered.forEach(name => {
+              const item = document.createElement('div');
+              item.className = 'search-dd-item';
+              item.textContent = name;
+              item.addEventListener('mousedown', e => { e.preventDefault(); inp.value = name; dd.classList.remove('open'); showToast(name); });
+              dd.appendChild(item);
+            });
+          }
+          dd.classList.add('open');
+        });
+        inp.addEventListener('blur', () => setTimeout(() => dd.classList.remove('open'), 150));
+      }
+
+      // 헤더 메뉴
+      document.querySelectorAll('.header-text, .header-text-left').forEach(el => {
+        el.addEventListener('click', function() { showToast(this.textContent.trim()); });
+      });
+
+      // 탭 전환
+      const tab1 = document.querySelector('.tabs-text1');
+      const tab2 = document.querySelector('.tabs-text2');
+      function setTab(active, inactive) {
+        active.style.cssText = 'color:var(--primitive-brand-800);font-weight:600;border-bottom:2px solid var(--primitive-brand-800);padding-bottom:11px;margin-bottom:-1px;cursor:pointer;';
+        inactive.style.cssText = 'color:var(--primitive-neutral-600);font-weight:400;cursor:pointer;';
+      }
+      if (tab1 && tab2) {
+        tab1.addEventListener('click', () => setTab(tab1, tab2));
+        tab2.addEventListener('click', () => { setTab(tab2, tab1); showToast('Example'); });
+      }
+
+      // 사이드바
+      const sidebarPs = document.querySelectorAll('.contents-section1 > p, .contents-sidebar-item');
+      let activeEl = null;
+      sidebarPs.forEach(el => {
+        el.classList.add('sidebar-menu-item');
+        if (!activeEl) { el.classList.add('sidebar-active'); activeEl = el; }
+        el.addEventListener('click', function() {
+          if (activeEl) activeEl.classList.remove('sidebar-active');
+          this.classList.add('sidebar-active'); activeEl = this;
+          showToast(this.textContent.trim());
+        });
+      });
+
+      // 사이드바 아코디언
+      document.querySelectorAll('.sidebar-item-a, .sidebar-item-b').forEach(btn => {
+        let collapsed = false;
+        btn.addEventListener('click', function() {
+          let next = this.nextElementSibling;
+          while (next && !next.classList.contains('sidebar-item-a') && !next.classList.contains('sidebar-item-b')) {
+            if (next.tagName !== 'OBJECT') {
+              next.style.display = collapsed ? '' : 'none';
+            }
+            next = next.nextElementSibling;
+          }
+          collapsed = !collapsed;
+        });
+      });
+
+      // Variants 라디오
+      function setupRadio(selector, cb) {
+        const items = document.querySelectorAll(selector);
+        items.forEach(item => {
+          item.addEventListener('click', function() {
+            items.forEach(i => {
+              const r = i.querySelector('.select-menu-item-circle-radio');
+              if (r) r.style.backgroundColor = '';
+              const t = i.querySelector('[class*="select-menu-item-text"]');
+              if (t) t.style.color = '';
+            });
+            const r = this.querySelector('.select-menu-item-circle-radio');
+            if (r) r.style.backgroundColor = 'var(--primitive-brand-500)';
+            const t = this.querySelector('[class*="select-menu-item-text"]');
+            if (t) t.style.color = 'var(--primitive-brand-800)';
+            cb && cb(this);
+          });
+        });
+      }
+
+      const previewBtn = document.querySelector('.card-btn');
+      setupRadio('.card-section4 .select-menu-item-a, .card-section4 .select-menu-item-b', function(el) {
+        const label = el.querySelector('[class*="select-menu-item-text"]')?.textContent?.trim();
+        if (!previewBtn || !label) return;
+        const map = {
+          'Solid':   ['var(--primitive-brand-800)', '#fff', 'none'],
+          'Outline': ['transparent', 'var(--primitive-brand-800)', '1px solid var(--primitive-brand-800)'],
+          'Text':    ['transparent', 'var(--primitive-brand-800)', 'none'],
+          'Danger':  ['var(--primitive-red-600)', '#fff', 'none'],
+        };
+        const [bg, color, border] = map[label] || map['Solid'];
+        previewBtn.style.backgroundColor = bg;
+        previewBtn.style.color = color;
+        previewBtn.style.border = border;
+        previewBtn.textContent = label;
+      });
+
+      setupRadio('.card-section6 .select-menu-item-a, .card-section6 .select-menu-item-b', function(el) {
+        showToast(el.querySelector('[class*="select-menu-item-text"]')?.textContent?.trim() + ' 선택');
+      });
+    });
+
+    let _tt = null;
+    function showToast(msg) {
+      let t = document.getElementById('ds-toast');
+      if (!t) { t = document.createElement('div'); t.id = 'ds-toast'; document.body.appendChild(t); }
+      t.textContent = msg; t.classList.add('show');
+      clearTimeout(_tt); _tt = setTimeout(() => t.classList.remove('show'), 2000);
+    }
+  </script>
+
+</body>
+
+</html>
